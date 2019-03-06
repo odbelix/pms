@@ -20,6 +20,11 @@ class User
     protected $id;
 
     /**
+     * @ORM\Column(type="string", length=45)
+     */
+    protected $username;
+
+    /**
      * @ORM\Column(type="date", nullable=true)
      */
     protected $birthdate;
@@ -74,6 +79,29 @@ class User
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Set the value of username.
+     *
+     * @param string $username
+     * @return \AppBundle\Entity\User
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of username.
+     *
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->username;
     }
 
     /**
@@ -216,6 +244,6 @@ class User
 
     public function __sleep()
     {
-        return array('id', 'birthdate', 'gender', 'lastname', 'name', 'created_at', 'updated_at');
+        return array('id', 'username', 'birthdate', 'gender', 'lastname', 'name', 'created_at', 'updated_at');
     }
 }

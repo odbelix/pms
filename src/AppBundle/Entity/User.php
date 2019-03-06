@@ -11,7 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity()
  * @ORM\Table(name="`user`")
  */
-class User
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -19,6 +19,7 @@ class User
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
+
 
     /**
      * @ORM\Column(type="date", nullable=true)
@@ -52,6 +53,8 @@ class User
 
     public function __construct()
     {
+            parent::__construct();
+            $this->setCreatedAt(new \Datetime('now'));
     }
 
     /**
@@ -76,7 +79,6 @@ class User
     {
         return $this->id;
     }
-
     /**
      * Set the value of birthdate.
      *
